@@ -31,6 +31,8 @@ export default defineComponent({
     const toggleOpen = () => {
       isOpen.value = !isOpen.value;
     };
+    // 判断是否点击其他区域
+    // 通过点击DOM标签下是否包含该下拉标签
     const isClickOutside = useClickOutside(dropdownRef);
 
     watch(isClickOutside, () => {

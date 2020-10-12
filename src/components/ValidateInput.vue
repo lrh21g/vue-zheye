@@ -25,7 +25,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, PropType, onMounted, computed } from "vue";
-import { emitter } from "./ValidateForm";
+import { emitter } from "./ValidateForm"; // 导入监听器
 
 const emailReg = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
@@ -77,12 +77,15 @@ export default defineComponent({
             default:
               break;
           }
+          return passed;
         });
         inputRef.error = !allPassed;
         return allPassed;
       }
+      return true;
     };
     onMounted(() => {
+      // 触发 form-item-created 事件
       emitter.emit("form-item-created", validateInput);
     });
     return {
