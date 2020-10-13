@@ -42,16 +42,7 @@
 import { defineComponent, PropType } from "vue";
 import Dropdown from "./Dropdown.vue";
 import DropdownItem from "./DropdownItem.vue";
-
-export interface UserProps {
-  isLogin: boolean;
-  nickName?: string;
-  _id?: string;
-  column?: string;
-  email?: string;
-  avatar?: ImageProps;
-  description?: string;
-}
+import { UserProps } from "../store";
 
 export default defineComponent({
   name: "GlobalHeader",

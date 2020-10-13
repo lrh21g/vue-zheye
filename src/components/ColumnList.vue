@@ -23,14 +23,9 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType } from "vue";
-
-export interface ColumnProps {
-  _id: number;
-  title: string;
-  avatar?: string;
-  description: string;
-}
+import { defineComponent, PropType, computed } from "vue";
+import { ColumnProps } from "../store";
+import { addColumnAvatar } from "../helper";
 
 export default defineComponent({
   name: "ColumnList",
@@ -43,9 +38,8 @@ export default defineComponent({
   setup(props) {
     const columnList = computed(() => {
       return props.list.map(column => {
-        if (!column.avatar) {
-          column.avatar = require("@/assets/column.jpg");
-        }
+        addColumnAvatar(column, 50, 50);
+        return column;
       });
     });
     return {
