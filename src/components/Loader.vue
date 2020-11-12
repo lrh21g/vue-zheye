@@ -1,4 +1,6 @@
 <template>
+  <!-- loading组件 -->
+  <!-- to：将 <teleport> 中的内容移动到指定的DOM元素内 -->
   <teleport to="#back">
     <div
       class="d-flex justify-content-center align-items-center h-100 w-100 loading-container"
@@ -20,11 +22,11 @@ import { defineComponent, onUnmounted } from "vue";
 export default defineComponent({
   props: {
     text: {
-      type: String
+      type: String,
     },
     background: {
-      type: String
-    }
+      type: String,
+    },
   },
   setup() {
     const node = document.createElement("div");
@@ -33,7 +35,7 @@ export default defineComponent({
     onUnmounted(() => {
       document.body.removeChild(node);
     });
-  }
+  },
 });
 </script>
 

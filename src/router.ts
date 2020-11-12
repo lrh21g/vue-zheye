@@ -15,37 +15,37 @@ const router = createRouter({
     {
       path: "/",
       name: "home",
-      component: Home
+      component: Home,
     },
     {
       path: "/login",
       name: "login",
       component: Login,
-      meta: { redirectAlreadyLogin: true }
+      meta: { redirectAlreadyLogin: true },
     },
     {
       path: "/signup",
       name: "signup",
       component: Signup,
-      meta: { redirectAlreadyLogin: true }
+      meta: { redirectAlreadyLogin: true },
     },
     {
       path: "/create",
       name: "create",
       component: CreatePost,
-      meta: { requiredLogin: true }
+      meta: { requiredLogin: true },
     },
     {
       path: "/column/:id",
       name: "column",
-      component: ColumnDetail
+      component: ColumnDetail,
     },
     {
       path: "/posts/:id",
       name: "post",
-      component: PostDetail
-    }
-  ]
+      component: PostDetail,
+    },
+  ],
 });
 
 router.beforeEach((to, from, next) => {

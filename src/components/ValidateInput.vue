@@ -25,7 +25,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, PropType, onMounted, computed } from "vue";
-import { emitter } from "./ValidateForm"; // 导入监听器
+import { emitter } from "./ValidateForm.vue"; // 导入监听器
 
 const emailReg = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
@@ -44,20 +44,20 @@ export default defineComponent({
     modelValue: String,
     tag: {
       type: String as PropType<TagType>,
-      default: "input"
-    }
+      default: "input",
+    },
   },
   inheritAttrs: false,
   setup(props, context) {
     const inputRef = reactive({
       val: computed({
-        get: () => props.modelValue | "",
+        get: () => props.modelValue || "",
         set: val => {
           context.emit("update:modelValue", val);
-        }
+        },
       }),
       error: false,
-      message: ""
+      message: "",
     });
     const validateInput = () => {
       if (props.rules) {
@@ -90,8 +90,8 @@ export default defineComponent({
     });
     return {
       inputRef,
-      validateInput
+      validateInput,
     };
-  }
+  },
 });
 </script>

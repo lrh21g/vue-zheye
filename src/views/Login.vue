@@ -42,7 +42,7 @@ export default defineComponent({
   name: "Login",
   components: {
     ValidateInput,
-    ValidateForm
+    ValidateForm,
   },
   setup() {
     const emailVal = ref("");
@@ -50,17 +50,15 @@ export default defineComponent({
     const store = useStore();
     const emailRules: RulesProp = [
       { type: "required", message: "电子邮箱地址不能为空" },
-      { type: "email", message: "请输入正确的电子邮箱格式" }
+      { type: "email", message: "请输入正确的电子邮箱格式" },
     ];
     const passwordVal = ref("");
-    const passwordRules: RulesProp = [
-      { type: "required", message: "密码不能为空" }
-    ];
+    const passwordRules: RulesProp = [{ type: "required", message: "密码不能为空" }];
     const onFormSubmit = (result: boolean) => {
       if (result) {
         const payload = {
           email: emailVal.value,
-          password: passwordVal.value
+          password: passwordVal.value,
         };
         store
           .dispatch("loginAndFetch", payload)
@@ -80,8 +78,8 @@ export default defineComponent({
       emailVal,
       passwordVal,
       passwordRules,
-      onFormSubmit
+      onFormSubmit,
     };
-  }
+  },
 });
 </script>

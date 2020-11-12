@@ -1,24 +1,11 @@
 # vue-zheye
 
-## Project setup
-```
-npm install
-```
+## 目录结构
 
-### Compiles and hot-reloads for development
+``` txt
+|- src
+    |- assets # 静态资源
+    |- components # 组件
+    |- hooks
+    |- views # 页面
 ```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

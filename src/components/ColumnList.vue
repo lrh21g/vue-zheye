@@ -1,4 +1,5 @@
 <template>
+  <!-- 专栏列表组件 -->
   <div class="row">
     <div v-for="column in columnList" :key="column._id" class="col-4 mb-4">
       <div class="card h-100 shadow-sm">
@@ -10,10 +11,7 @@
           />
           <h5 class="card-title">{{ column.title }}</h5>
           <p class="card-text text-left">{{ column.description }}</p>
-          <router-link
-            :to="`/column/${column._id}`"
-            class="btn btn-outline-primary"
-          >
+          <router-link :to="`/column/${column._id}`" class="btn btn-outline-primary">
             进入专栏
           </router-link>
         </div>
@@ -32,8 +30,8 @@ export default defineComponent({
   props: {
     list: {
       type: Array as PropType<ColumnProps[]>,
-      required: true
-    }
+      required: true,
+    },
   },
   setup(props) {
     const columnList = computed(() => {
@@ -43,9 +41,9 @@ export default defineComponent({
       });
     });
     return {
-      columnList
+      columnList,
     };
-  }
+  },
 });
 </script>
 

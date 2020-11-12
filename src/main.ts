@@ -23,7 +23,7 @@ axios.interceptors.response.use(
     store.commit("setError", { status: true, message: error });
     store.commit("setLoading", false);
     return Promise.reject(e.response.data);
-  }
+  },
 );
 
 const app = createApp(App);

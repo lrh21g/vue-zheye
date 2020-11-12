@@ -1,4 +1,5 @@
 <template>
+  <!-- 下拉列表 - 子组件 -->
   <li class="dropdown-option" :class="{ 'is-disabled': disabled }">
     <slot></slot>
   </li>
@@ -10,9 +11,9 @@ export default defineComponent({
   props: {
     disabled: {
       type: Boolean,
-      default: false
-    }
-  }
+      default: false,
+    },
+  },
 });
 </script>
 

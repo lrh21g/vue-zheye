@@ -59,26 +59,22 @@ export default defineComponent({
   name: "Signup",
   components: {
     ValidateInput,
-    ValidateForm
+    ValidateForm,
   },
   setup() {
     const formData = reactive({
       email: "",
       nickName: "",
       password: "",
-      repeatPassword: ""
+      repeatPassword: "",
     });
     const router = useRouter();
     const emailRules: RulesProp = [
       { type: "required", message: "电子邮箱地址不能为空" },
-      { type: "email", message: "请输入正确的电子邮箱格式" }
+      { type: "email", message: "请输入正确的电子邮箱格式" },
     ];
-    const nameRules: RulesProp = [
-      { type: "required", message: "昵称不能为空" }
-    ];
-    const passwordRules: RulesProp = [
-      { type: "required", message: "密码不能为空" }
-    ];
+    const nameRules: RulesProp = [{ type: "required", message: "昵称不能为空" }];
+    const passwordRules: RulesProp = [{ type: "required", message: "密码不能为空" }];
     const repeatPasswordRules: RulesProp = [
       { type: "required", message: "重复密码不能为空" },
       {
@@ -86,15 +82,15 @@ export default defineComponent({
         validator: () => {
           return formData.password === formData.repeatPassword;
         },
-        message: "密码不相同"
-      }
+        message: "密码不相同",
+      },
     ];
     const onFormSubmit = (result: boolean) => {
       if (result) {
         const payload = {
           email: formData.email,
           password: formData.password,
-          nickName: formData.nickName
+          nickName: formData.nickName,
         };
         axios
           .post("/users/", payload)
@@ -115,9 +111,9 @@ export default defineComponent({
       passwordRules,
       repeatPasswordRules,
       onFormSubmit,
-      formData
+      formData,
     };
-  }
+  },
 });
 </script>
 

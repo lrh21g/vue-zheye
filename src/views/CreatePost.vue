@@ -1,4 +1,5 @@
 <template>
+  <!-- 编辑/创建文章 -->
   <div class="create-post-page">
     <h4>{{ isEditMode ? "编辑文章" : "新建文章" }}</h4>
     <uploader
@@ -69,7 +70,7 @@ export default defineComponent({
   components: {
     ValidateInput,
     ValidateForm,
-    Uploader
+    Uploader,
   },
   setup() {
     const uploadedData = ref();
@@ -79,25 +80,19 @@ export default defineComponent({
     const isEditMode = !!route.query.id;
     const store = useStore<GlobalDataProps>();
     let imageId = "";
-    const titleRules: RulesProp = [
-      { type: "required", message: "文章标题不能为空" }
-    ];
+    const titleRules: RulesProp = [{ type: "required", message: "文章标题不能为空" }];
     const contentVal = ref("");
-    const contentRules: RulesProp = [
-      { type: "required", message: "文章详情不能为空" }
-    ];
+    const contentRules: RulesProp = [{ type: "required", message: "文章详情不能为空" }];
     onMounted(() => {
       if (isEditMode) {
-        store
-          .dispatch("fetchPost", route.query.id)
-          .then((rawData: ResponseType<PostProps>) => {
-            const currentPost = rawData.data;
-            if (currentPost.image) {
-              uploadedData.value = { data: currentPost.image };
-            }
-            titleVal.value = currentPost.title;
-            contentVal.value = currentPost.content || "";
-          });
+        store.dispatch("fetchPost", route.query.id).then((rawData: ResponseType<PostProps>) => {
+          const currentPost = rawData.data;
+          if (currentPost.image) {
+            uploadedData.value = { data: currentPost.image };
+          }
+          titleVal.value = currentPost.title;
+          contentVal.value = currentPost.content || "";
+        });
       }
     });
     const handleFileUploaded = (rawData: ResponseType<ImageProps>) => {
@@ -113,7 +108,7 @@ export default defineComponent({
             title: titleVal.value,
             content: contentVal.value,
             column,
-            author: _id
+            author: _id,
           };
           if (imageId) {
             newPost.image = imageId;
@@ -122,7 +117,7 @@ export default defineComponent({
           const sendData = isEditMode
             ? {
                 id: route.query.id,
-                payload: newPost
+                payload: newPost,
               }
             : newPost;
           store.dispatch(actionName, sendData).then(() => {
@@ -137,7 +132,7 @@ export default defineComponent({
     const uploadCheck = (file: File) => {
       const result = beforeUploadCheck(file, {
         format: ["image/jpeg", "image/png"],
-        size: 1
+        size: 1,
       });
       const { passed, error } = result;
       if (error === "format") {
@@ -157,9 +152,9 @@ export default defineComponent({
       uploadCheck,
       handleFileUploaded,
       uploadedData,
-      isEditMode
+      isEditMode,
     };
-  }
+  },
 });
 </script>
 <style>

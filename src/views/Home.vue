@@ -33,7 +33,7 @@ import ColumnList from "../components/ColumnList.vue";
 export default defineComponent({
   name: "Home",
   components: {
-    ColumnList
+    ColumnList,
   },
   setup() {
     const store = useStore<GlobalDataProps>();
@@ -44,13 +44,13 @@ export default defineComponent({
     const list = computed(() => store.getters.getColumns);
     const { loadMorePage, isLastPage } = useLoadMore("fetchColumns", total, {
       pageSize: 3,
-      currentPage: 2
+      currentPage: 2,
     });
     return {
       list,
       loadMorePage,
-      isLastPage
+      isLastPage,
     };
-  }
+  },
 });
 </script>

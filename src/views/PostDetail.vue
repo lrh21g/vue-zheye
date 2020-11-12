@@ -1,4 +1,5 @@
 <template>
+  <!-- 文章详情 -->
   <div class="post-detail-page">
     <modal
       title="删除文章"
@@ -38,11 +39,7 @@
         >
           编辑
         </router-link>
-        <button
-          type="button"
-          class="btn btn-danger"
-          @click.prevent="modalIsVisible = true"
-        >
+        <button type="button" class="btn btn-danger" @click.prevent="modalIsVisible = true">
           删除
         </button>
       </div>
@@ -55,13 +52,7 @@ import { defineComponent, onMounted, computed, ref } from "vue";
 import MarkdownIt from "markdown-it";
 import { useStore } from "vuex";
 import { useRoute, useRouter } from "vue-router";
-import {
-  GlobalDataProps,
-  PostProps,
-  ImageProps,
-  UserProps,
-  ResponseType
-} from "../store";
+import { GlobalDataProps, PostProps, ImageProps, UserProps, ResponseType } from "../store";
 import UserProfile from "../components/UserProfile.vue";
 import Modal from "../components/Modal.vue";
 import createMessage from "../components/createMessage";
@@ -70,7 +61,7 @@ export default defineComponent({
   name: "post-detail",
   components: {
     UserProfile,
-    Modal
+    Modal,
   },
   setup() {
     const store = useStore<GlobalDataProps>();
@@ -82,9 +73,7 @@ export default defineComponent({
     onMounted(() => {
       store.dispatch("fetchPost", currentId);
     });
-    const currentPost = computed<PostProps>(() =>
-      store.getters.getCurrentPost(currentId)
-    );
+    const currentPost = computed<PostProps>(() => store.getters.getCurrentPost(currentId));
     const currentHTML = computed(() => {
       const { content, isHTML } = currentPost.value;
       if (currentPost.value && content) {
@@ -110,17 +99,15 @@ export default defineComponent({
     });
     const hideAndDelete = () => {
       modalIsVisible.value = false;
-      store
-        .dispatch("deletePost", currentId)
-        .then((rawData: ResponseType<PostProps>) => {
-          createMessage("删除成功，2秒后跳转到专栏首页", "success", 2000);
-          setTimeout(() => {
-            router.push({
-              name: "column",
-              params: { id: rawData.data.column }
-            });
-          }, 2000);
-        });
+      store.dispatch("deletePost", currentId).then((rawData: ResponseType<PostProps>) => {
+        createMessage("删除成功，2秒后跳转到专栏首页", "success", 2000);
+        setTimeout(() => {
+          router.push({
+            name: "column",
+            params: { id: rawData.data.column },
+          });
+        }, 2000);
+      });
     };
     return {
       currentPost,
@@ -128,8 +115,8 @@ export default defineComponent({
       currentHTML,
       showEditArea,
       modalIsVisible,
-      hideAndDelete
+      hideAndDelete,
     };
-  }
+  },
 });
 </script>

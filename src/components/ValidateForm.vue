@@ -39,8 +39,8 @@ export default defineComponent({
       funcArr = [];
     });
     return {
-      submitForm
+      submitForm,
     };
-  }
+  },
 });
 </script>

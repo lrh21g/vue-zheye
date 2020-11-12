@@ -29,7 +29,7 @@ export default defineComponent({
   name: "App",
   components: {
     GlobalHeader,
-    Loader
+    Loader,
   },
   setup() {
     const store = useStore<GlobalDataProps>();
@@ -43,14 +43,14 @@ export default defineComponent({
         if (status && message) {
           createMessage(message, "error");
         }
-      }
+      },
     );
     return {
       currentUser,
       isLoading,
-      error
+      error,
     };
-  }
+  },
 });
 </script>
 
