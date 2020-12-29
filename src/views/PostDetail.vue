@@ -102,10 +102,7 @@ export default defineComponent({
       store.dispatch("deletePost", currentId).then((rawData: ResponseType<PostProps>) => {
         createMessage("删除成功，2秒后跳转到专栏首页", "success", 2000);
         setTimeout(() => {
-          router.push({
-            name: "column",
-            params: { id: rawData.data.column },
-          });
+          router.push({ name: "column", params: { id: rawData.data.column } });
         }, 2000);
       });
     };

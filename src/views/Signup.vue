@@ -39,9 +39,7 @@
         />
       </div>
       <template #submit>
-        <button type="submit" class="btn btn-primary btn-block btn-large">
-          注册新用户
-        </button>
+        <button type="submit" class="btn btn-primary btn-block btn-large">注册新用户</button>
       </template>
     </validate-form>
   </div>
@@ -94,7 +92,7 @@ export default defineComponent({
         };
         axios
           .post("/users/", payload)
-          .then(data => {
+          .then(() => {
             createMessage("注册成功 正在跳转登录页面", "success");
             setTimeout(() => {
               router.push("/login");

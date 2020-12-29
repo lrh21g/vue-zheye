@@ -22,9 +22,7 @@
         />
       </div>
       <template #submit>
-        <button type="submit" class="btn btn-primary btn-block btn-large">
-          登录
-        </button>
+        <button type="submit" class="btn btn-primary btn-block btn-large">登录</button>
       </template>
     </validate-form>
   </div>
@@ -62,7 +60,7 @@ export default defineComponent({
         };
         store
           .dispatch("loginAndFetch", payload)
-          .then(data => {
+          .then(() => {
             createMessage("登录成功 2秒后跳转首页", "success");
             setTimeout(() => {
               router.push("/");

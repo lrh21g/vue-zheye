@@ -1,5 +1,4 @@
 <template>
-  <!-- 编辑/创建文章 -->
   <div class="create-post-page">
     <h4>{{ isEditMode ? "编辑文章" : "新建文章" }}</h4>
     <uploader
@@ -130,10 +129,7 @@ export default defineComponent({
       }
     };
     const uploadCheck = (file: File) => {
-      const result = beforeUploadCheck(file, {
-        format: ["image/jpeg", "image/png"],
-        size: 1,
-      });
+      const result = beforeUploadCheck(file, { format: ["image/jpeg", "image/png"], size: 1 });
       const { passed, error } = result;
       if (error === "format") {
         createMessage("上传图片只能是 JPG/PNG 格式!", "error");
